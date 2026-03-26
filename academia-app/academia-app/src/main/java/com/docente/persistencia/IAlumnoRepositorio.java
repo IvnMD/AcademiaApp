@@ -6,14 +6,12 @@ import com.docente.modelo.Alumno;
 
 public interface IAlumnoRepositorio {
 
-  /**
-   * Funciona que obtiene todos los alumnos del repositorio.
-   * @return Lista de alumnos del repositorio.
-   */
-  List<Alumno> obtenerAlumnos();
+    /**
+     * Funcion que obtiene todos los alumnos del repositorio
+     * @return Lista de alumnos
+     * */
+    List<Alumno> obtenerAlumnos();
 
-  
-  public boolean guardarAlumno();
-  
+    boolean guardarAlumnos(List<Alumno> alumnos);
 
 }

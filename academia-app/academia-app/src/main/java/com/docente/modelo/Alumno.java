@@ -34,6 +34,14 @@ public class Alumno extends PersonaAbstracta {
     }
 
     public String toCsv() {
-        return String.format("%s"+DELIMITER+"%s"+DELIMITER+"%d"+DELIMITER+"%s", getIdentificador(), getNombre(), getEdad(), getCurso());
+        return String.format("%s"+"|"+"%s"+"|"+"%d"+"|"+"%s", getIdentificador(), getNombre(), getEdad(), getCurso());
     }
+
+    @Override
+    public String toString() {
+        return "Alumno [getCurso()=" + getCurso() + ", getIdentificador()=" + getIdentificador() + ", getNombre()="
+                + getNombre() + ", getEdad()=" + getEdad() + "]";
+    }
+
+    
 }

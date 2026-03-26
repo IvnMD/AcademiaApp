@@ -6,10 +6,13 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.docente.modelo.Alumno;
+
 import static com.docente.utils.Utilidades.DELIMITER;
 
 public abstract class FicheroAbstract {
@@ -44,25 +47,24 @@ public abstract class FicheroAbstract {
     }
 
     public List<Alumno> read() {
-        List<Alumno> alumnos = new ArrayList<>();
+        List<Alumno> alumnos= new ArrayList<>();
         try {
             try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-                String line;
-                while ((line = br.readLine()) != null) {
-                    String[] values = line.split(DELIMITER);
-                    alumnos.add(new Alumno(values[0], values[1], Integer.parseInt(values[2]), values[3]));
-                }
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(DELIMITER);
+                alumnos.add(new Alumno(values[0],values[1], Integer.parseInt(values[2]), values[3]));
             }
+        }
         } catch (Exception e) {
             System.err.printf("No se ha podido leer el fichero :%s", path);
         }
         return alumnos;
     }
-
     // datos = 00000000H| pepe| 18| DAM
-    // Alumno alumno, alumno.toCSV
+    // Alumno alumno, alumno.toCSV  
     public void write(Alumno alumno) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
+       try (BufferedWriter bw = new BufferedWriter(new FileWriter(file, true))) {
             bw.write(alumno.toCsv());
             bw.newLine();
         } catch (IOException e) {
@@ -72,9 +74,9 @@ public abstract class FicheroAbstract {
 
     /**
      * Funcion que actualiza toda la lista dentro del fichero
-     * @param alumnos de la lista
+     * @param alumnos lista de alumnos
      */
-    public void updateLista(List<Alumno> alumnos){
+    public void updateFichero(List<Alumno> alumnos) {
         cleanFile();
         for (Alumno alumno : alumnos) {
             write(alumno);

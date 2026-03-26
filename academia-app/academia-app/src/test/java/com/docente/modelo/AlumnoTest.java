@@ -1,5 +1,7 @@
 package com.docente.modelo;
 
+import static com.docente.utils.Utilidades.DELIMITER;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -62,4 +64,11 @@ class AlumnoTest {
         assertFalse(alumnoEquals.equals(alumno));
     }
 
+    @Test
+    void splitAlumnoTest(){
+        String line = "00000000H|pepe|18|1DAM";
+        String[] values = line.split(DELIMITER);
+        assertEquals("00000000H", values[0]);
+
+    }
 }
